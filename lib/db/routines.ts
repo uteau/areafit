@@ -46,7 +46,7 @@ export async function deleteRoutine(id: string) {
 
 export async function addExercise(
   routineId: string,
-  input: { name: string; sets: number; reps: string; notes: string }
+  input: { name: string; sets: number | null; reps: string; notes: string }
 ) {
   const supabase = await createClient()
   const { data: existing } = await supabase
@@ -60,7 +60,7 @@ export async function addExercise(
   if (error) throw new Error('No se pudo añadir el ejercicio')
 }
 
-export async function updateExercise(id: string, input: { name: string; sets: number; reps: string; notes: string }) {
+export async function updateExercise(id: string, input: { name: string; sets: number | null; reps: string; notes: string }) {
   const supabase = await createClient()
   const { error } = await supabase.from('routine_exercises').update(input).eq('id', id)
   if (error) throw new Error('No se pudo actualizar el ejercicio')
