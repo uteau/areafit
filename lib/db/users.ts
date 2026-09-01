@@ -2,6 +2,14 @@ import { createAdminClient } from '@/lib/supabase/admin'
 import { createClient } from '@/lib/supabase/server'
 import type { Profile, Role } from '@/lib/types'
 
+export async function currentProfile(): Promise<Profile | null> {
+  const supabase = await createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+  if (!user) return null
+  const { data } = await supabase.from('profiles').select('*').eq('id', user.id).single()
+  return (data as Profile) ?? null
+}
+
 export async function listProfiles(): Promise<Profile[]> {
   const supabase = await createClient()
   const { data } = await supabase.from('profiles').select('*').order('role', { ascending: true })
