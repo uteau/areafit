@@ -19,6 +19,10 @@ export function isSameDay(a: Date, b: Date): boolean {
   )
 }
 
+export function dayKey(date: Date): string {
+  return `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`
+}
+
 export function formatDayLong(date: Date): string {
   return date.toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long' })
 }
