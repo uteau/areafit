@@ -1,15 +1,18 @@
 'use client'
 
+import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { isStaff } from '@/lib/access'
+import { isStaff, labelOf } from '@/lib/access'
 import type { Role } from '@/lib/access'
 import { UserMenu } from '@/components/user-menu'
 import {
   IconCalendar,
   IconDumbbell,
   IconLogOut,
+  IconMenu,
   IconUsers,
+  IconX,
 } from '@/components/icons'
 
 function navItems(role: Role) {
@@ -19,6 +22,73 @@ function navItems(role: Role) {
   ]
   if (isStaff(role)) base.push({ href: '/usuarios', label: 'Equipo', icon: IconUsers })
   return base
+}
+
+function MobileHeader({ profile }: { profile: { id: string; full_name: string; role: Role } }) {
+  const [open, setOpen] = useState(false)
+  const panelRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (!open) return
+    function onPointerDown(e: PointerEvent) {
+      if (panelRef.current && !panelRef.current.contains(e.target as Node)) setOpen(false)
+    }
+    function onKeyDown(e: KeyboardEvent) {
+      if (e.key === 'Escape') setOpen(false)
+    }
+    document.addEventListener('pointerdown', onPointerDown)
+    document.addEventListener('keydown', onKeyDown)
+    return () => {
+      document.removeEventListener('pointerdown', onPointerDown)
+      document.removeEventListener('keydown', onKeyDown)
+    }
+  }, [open])
+
+  return (
+    <header className="lg:hidden sticky top-0 z-30 border-b border-seam bg-cabinet/95 backdrop-blur">
+      <div className="flex h-14 items-center justify-between px-5 pt-[env(safe-area-inset-top)]">
+        <span className="brand text-sm">
+          <span className="brand-dot" aria-hidden="true" />
+          AreaFit
+        </span>
+        <button
+          type="button"
+          onClick={() => setOpen((v) => !v)}
+          aria-label={open ? 'Cerrar menú' : 'Abrir menú'}
+          aria-expanded={open}
+          aria-haspopup="menu"
+          className="btn btn-ghost !p-2"
+        >
+          {open ? <IconX size={18} /> : <IconMenu size={18} />}
+        </button>
+      </div>
+
+      {open ? (
+        <div
+          ref={panelRef}
+          role="menu"
+          className="absolute inset-x-4 top-[calc(100%+0.5rem)] z-30 rounded-xl border border-seam bg-cabinet p-4 shadow-[0_24px_60px_-20px_rgb(0_0_0/0.6)]"
+        >
+          <div className="flex items-center justify-between gap-3">
+            <div className="min-w-0">
+              <p className="truncate text-sm font-semibold text-lit">{profile.full_name}</p>
+              <p className="mt-0.5 text-xs font-medium uppercase tracking-wider text-lamp">
+                {labelOf(profile.role)}
+              </p>
+            </div>
+          </div>
+          <div className="mt-4 border-t border-seam pt-4">
+            <form action="/logout" method="post">
+              <button type="submit" role="menuitem" className="w-full btn btn-ghost">
+                <IconLogOut size={16} />
+                Cerrar sesión
+              </button>
+            </form>
+          </div>
+        </div>
+      ) : null}
+    </header>
+  )
 }
 
 export function Sidebar({ profile }: { profile: { id: string; full_name: string; role: Role } }) {
@@ -52,28 +122,8 @@ export function Sidebar({ profile }: { profile: { id: string; full_name: string;
         <UserMenu profile={profile} />
       </aside>
 
-      {/* Mobile header: cabinet strip with brand + session */}
-      <header className="lg:hidden sticky top-0 z-30 border-b border-seam bg-cabinet/95 backdrop-blur px-5 pt-[max(0.75rem,env(safe-area-inset-top))] pb-3 flex items-center justify-between">
-        <span className="brand text-base">
-          <span className="brand-dot" aria-hidden="true" />
-          AreaFit
-        </span>
-        <div className="flex items-center gap-2">
-          <span className="max-w-[120px] truncate text-sm font-semibold text-lit">
-            {profile.full_name}
-          </span>
-          <form action="/logout" method="post">
-            <button
-              type="submit"
-              aria-label="Cerrar sesión"
-              title="Cerrar sesión"
-              className="btn btn-ghost !p-2"
-            >
-              <IconLogOut size={16} />
-            </button>
-          </form>
-        </div>
-      </header>
+      {/* Mobile header: slim brand strip with hamburger menu */}
+      <MobileHeader profile={profile} />
 
       {/* Mobile bottom console: the scoreboard's console strip */}
       <nav

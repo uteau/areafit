@@ -6,7 +6,6 @@ import { updateRoutine } from '@/actions/routines'
 import { RoutineForm } from '@/components/routine-form'
 import { ExerciseEditor } from '@/components/exercise-editor'
 import { BackLink } from '@/components/back-link'
-import { PageHeader } from '@/components/page-header'
 
 export default async function EditRoutinePage({
   params,
@@ -21,9 +20,9 @@ export default async function EditRoutinePage({
   if (!routine) notFound()
 
   return (
-    <div className="max-w-2xl">
+    <div className="mx-auto max-w-2xl">
       <BackLink href={`/rutinas/${id}`}>{routine.title}</BackLink>
-      <PageHeader title="Editar rutina" />
+      <h1 className="mb-6 readout text-3xl">Editar rutina</h1>
       <RoutineForm
         action={async (fd) => updateRoutine(id, fd)}
         defaults={routine}

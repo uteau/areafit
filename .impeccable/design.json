@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-02T01:25:00-03:00",
+  "generatedAt": "2026-09-02T02:48:00-03:00",
   "title": "Design System: AreaFit",
   "extensions": {
     "colorMeta": {
@@ -232,12 +232,28 @@
       "css": ".ds-panel{box-sizing:border-box;padding:20px;border:1px solid #26282d;border-radius:14px;background:#121316;}.ds-kicker{margin:0 0 6px;font-family:\"DM Sans Variable\",ui-sans-serif,system-ui,sans-serif;font-size:11px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:rgb(245 245 241/0.55);}.ds-title{margin:0;font-family:\"DM Sans Variable\",ui-sans-serif,system-ui,sans-serif;font-weight:800;letter-spacing:-0.02em;line-height:1.05;font-size:28px;color:#f5f5f1;}.ds-body{margin:10px 0 0;font-family:\"DM Sans Variable\",ui-sans-serif,system-ui,sans-serif;font-size:14px;line-height:1.5;color:rgb(245 245 241/0.8);}"
     },
     {
+      "name": "Event Card",
+      "kind": "card",
+      "refersTo": "panel",
+      "description": "La tarjeta que el jugador lee cada día: tipo con lámpara, hora tabular, título, fecha y lugar.",
+      "html": "<a class=\"ds-event\" href=\"#\"><div class=\"ds-event-head\"><span class=\"ds-event-type\"><span class=\"ds-lamp ds-lamp-partido\"></span>Partido</span><time class=\"ds-event-time\">19:30</time></div><p class=\"ds-event-title\">AreaFit vs. CV Sierra</p><p class=\"ds-event-meta\">Sábado 5 de septiembre</p><p class=\"ds-event-loc\"><svg width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M12 21s-6.5-5.4-6.5-10.5a6.5 6.5 0 0 1 13 0C18.5 15.6 12 21 12 21Z\"/><circle cx=\"12\" cy=\"10.5\" r=\"2.5\"/></svg>Pabellón Municipal</p></a>",
+      "css": ".ds-event{display:block;box-sizing:border-box;padding:14px;border:1px solid #26282d;border-radius:12px;background:#121316;text-decoration:none;font-family:\"DM Sans Variable\",ui-sans-serif,system-ui,sans-serif;transition:border-color 140ms ease-out;}.ds-event:hover{border-color:#363940;}.ds-event-head{display:flex;align-items:center;justify-content:space-between;gap:8px;}.ds-event-type{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#e31b23;}.ds-event-time{margin:0;font-size:14px;font-weight:800;font-variant-numeric:tabular-nums;color:#f5f5f1;}.ds-event-title{margin:8px 0 0;font-size:14px;font-weight:700;color:#f5f5f1;}.ds-event-meta{margin:2px 0 0;font-size:12px;font-weight:500;color:rgb(245 245 241/0.5);}.ds-event-loc{display:flex;align-items:center;gap:4px;margin:6px 0 0;font-size:12px;font-weight:500;color:rgb(245 245 241/0.5);}.ds-lamp{display:inline-block;width:8px;height:8px;border-radius:9999px;flex:none;}.ds-lamp-partido{background:#e31b23;box-shadow:0 0 10px rgb(227 27 35/0.55);}"
+    },
+    {
       "name": "Role Pill",
       "kind": "chip",
       "refersTo": "pill",
       "description": "Píldora de rol sobre la placa: Admin / Entrenador / Deportista.",
       "html": "<span class=\"ds-pill\">Deportista</span>",
       "css": ".ds-pill{display:inline-flex;align-items:center;height:24px;padding:0 10px;box-sizing:border-box;border:1px solid #363940;border-radius:9999px;background:#1a1c20;color:#f5f5f1;font-family:\"DM Sans Variable\",ui-sans-serif,system-ui,sans-serif;font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;line-height:1;}"
+    },
+    {
+      "name": "Today Chip",
+      "kind": "custom",
+      "refersTo": "lamp",
+      "description": "El segmento rojo encendido del día de hoy en el marcador mensual.",
+      "html": "<div style=\"display:flex;align-items:center;gap:12px;font-family:\"DM Sans Variable\",ui-sans-serif,system-ui,sans-serif;\"><span class=\"ds-today\">17</span><span style=\"font-size:12px;font-weight:600;color:rgb(245 245 241/0.6);\">Hoy en el marcador</span></div>",
+      "css": ".ds-today{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:8px;background:#e31b23;color:#fff;font-family:\"DM Sans Variable\",ui-sans-serif,system-ui,sans-serif;font-weight:800;font-size:13px;line-height:1;letter-spacing:-0.02em;font-variant-numeric:tabular-nums;box-shadow:0 0 14px rgb(227 27 35/0.5);}"
     },
     {
       "name": "Nav Item",
@@ -279,7 +295,7 @@
       },
       {
         "name": "La Regla del Marcador",
-        "body": "Los números miden; no se decoran. El tracking nunca baja de -0.04em, y el título de lectura manda con peso, no con tamaño gigante.",
+        "body": "Los números miden; no se decoran. El tracking nunca baja de -0.04em, y el título de lectura manda con peso, no con tamaño gigante. En el pabellón el texto más grande del view es su encabezado readout.",
         "section": "typography"
       },
       {
@@ -292,7 +308,8 @@
       "Do construir toda superficie sobre cabinet/plate y el fondo sobre hall; lit para texto y sus opacidades para los secundarios.",
       "Do encender la lámpara solo en lo que importa: hoy, partidos, acción primaria, foco.",
       "Do usar readout (800, tracking -0.02em) para títulos protagonistas y tabular-nums para horas, fechas y conteos.",
-      "Do mantener España: bordes de 1 px seam, radio 8-14 px, estados vacíos y errores en español."
+      "Do mantener España: bordes de 1 px seam, radio 8-14 px, estados vacíos y errores en español.",
+      "Do reservar el eyebrow \"Área Fit · Voleibol\" para las páginas raíz; las sub-páginas abren con BackLink y título readout propio."
     ],
     "donts": [
       "Don't usar cajas claras, blanco puro, slate* o azules de sistema en ninguna superficie.",

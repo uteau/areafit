@@ -220,6 +220,7 @@ También es el **segmento rojo del día de hoy** en el calendario (chip `lamp` d
 - **Do** encender la lámpara solo en lo que importa: hoy, partidos, acción primaria, foco.
 - **Do** usar `readout` (800, tracking `-0.02em`) para títulos protagonistas y `tabular-nums` para horas, fechas y conteos.
 - **Do** mantener España: bordes de 1 px `seam`, radio 8–14 px, estados vacíos y errores en español.
+- **Do** reservar el `eyebrow` "Área Fit · Voleibol" para las páginas raíz; las sub-páginas abren con `BackLink` y título `readout` propio.
 
 ### Don't:
 - **Don't** usar cajas claras, blanco puro, `slate*` o azules de sistema en ninguna superficie.
