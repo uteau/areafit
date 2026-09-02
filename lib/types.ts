@@ -33,6 +33,8 @@ export interface Routine {
   title: string
   description: string
   created_by: string | null
+  assigned_to_player: string | null
+  assigned_to_group: string | null
   created_at: string
 }
 
@@ -44,4 +46,17 @@ export interface Exercise {
   reps: string | null
   notes: string
   position: number
+}
+
+export interface PlayerGroup {
+  id: string
+  name: string
+  description: string
+  created_by: string | null
+  created_at: string
+}
+
+export interface PlayerGroupMember {
+  group_id: string
+  player_id: string
 }
