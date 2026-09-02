@@ -3,8 +3,7 @@ import { listEvents } from "@/lib/db/events";
 import { currentProfile } from "@/lib/db/users";
 import { getMonthGrid, dayKey } from "@/lib/calendar";
 import { isStaff } from "@/lib/access";
-import { CalendarGrid } from "@/components/calendar-grid";
-import { EventCard } from "@/components/event-card";
+import { CalendarApp } from "@/components/calendar-app";
 import { PageHeader } from "@/components/page-header";
 import { IconChevron, IconChevrons, IconPlus } from "@/components/icons";
 import type { EventRow } from "@/lib/types";
@@ -51,6 +50,49 @@ export default async function CalendarioPage({
   });
   const monthKey = `${year}-${month}`;
 
+  const nav = (
+    <div className="mb-3 flex items-center justify-between border-b border-seam pb-3">
+      <div className="flex items-center gap-1">
+        <a
+          href={`?mes=${prevYear.month}&anio=${prevYear.year}`}
+          className="btn btn-ghost !p-2"
+          title="Año anterior"
+          aria-label="Año anterior"
+        >
+          <IconChevrons dir="l" size={16} />
+        </a>
+        <a
+          href={`?mes=${prev.month}&anio=${prev.year}`}
+          className="btn btn-ghost !p-2"
+          title="Mes anterior"
+          aria-label="Mes anterior"
+        >
+          <IconChevron dir="l" size={16} />
+        </a>
+      </div>
+      <h2 className="readout capitalize text-lg sm:text-xl">{monthLabel}</h2>
+      <div className="flex items-center gap-1">
+        <a
+          href={`?mes=${next.month}&anio=${next.year}`}
+          className="btn btn-ghost !p-2"
+          title="Mes siguiente"
+          aria-label="Mes siguiente"
+        >
+          <IconChevron dir="r" size={16} />
+        </a>
+        <a
+          href={`?mes=${nextYear.month}&anio=${nextYear.year}`}
+          className="btn btn-ghost !p-2"
+          title="Año siguiente"
+          aria-label="Año siguiente"
+        >
+          <IconChevrons dir="r" size={16} />
+        </a>
+      </div>
+    </div>
+  );
+
+
   return (
     <div>
       <PageHeader title="Calendario">
@@ -62,72 +104,14 @@ export default async function CalendarioPage({
         ) : null}
       </PageHeader>
 
-      <div className="grid gap-6 lg:grid-cols-[1fr_300px]">
-        <div className="panel p-3 sm:p-4">
-          <div className="mb-3 flex items-center justify-between border-b border-seam pb-3">
-            <div className="flex items-center gap-1">
-              <a
-                href={`?mes=${prevYear.month}&anio=${prevYear.year}`}
-                className="btn btn-ghost !p-2"
-                title="Año anterior"
-                aria-label="Año anterior"
-              >
-                <IconChevrons dir="l" size={16} />
-              </a>
-              <a
-                href={`?mes=${prev.month}&anio=${prev.year}`}
-                className="btn btn-ghost !p-2"
-                title="Mes anterior"
-                aria-label="Mes anterior"
-              >
-                <IconChevron dir="l" size={16} />
-              </a>
-            </div>
-            <h2 className="readout capitalize text-lg sm:text-xl">
-              {monthLabel}
-            </h2>
-            <div className="flex items-center gap-1">
-              <a
-                href={`?mes=${next.month}&anio=${next.year}`}
-                className="btn btn-ghost !p-2"
-                title="Mes siguiente"
-                aria-label="Mes siguiente"
-              >
-                <IconChevron dir="r" size={16} />
-              </a>
-              <a
-                href={`?mes=${nextYear.month}&anio=${nextYear.year}`}
-                className="btn btn-ghost !p-2"
-                title="Año siguiente"
-                aria-label="Año siguiente"
-              >
-                <IconChevrons dir="r" size={16} />
-              </a>
-            </div>
-          </div>
-          <CalendarGrid
-            weeks={weeks}
-            eventsByDay={eventsByDay}
-            today={now}
-            monthKey={monthKey}
-          />
-        </div>
-
-        <aside>
-          <h3 className="mb-3 eyebrow">Próximos eventos</h3>
-          {upcoming.length === 0 ? (
-            <p className="text-sm font-medium text-lit/45">
-              No hay eventos próximos
-            </p>
-          ) : (
-            <div className="space-y-2">
-              {upcoming.map((ev) => (
-                <EventCard key={ev.id} event={ev} />
-              ))}
-            </div>
-          )}
-        </aside>
-      </div>
+      <CalendarApp
+        weeks={weeks}
+        eventsByDay={eventsByDay}
+        upcoming={upcoming}
+        today={now}
+        monthKey={monthKey}
+        nav={nav}
+      />
     </div>
   );
 }

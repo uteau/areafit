@@ -7,11 +7,15 @@ export function CalendarGrid({
   weeks,
   eventsByDay,
   today,
+  selectedDay,
+  onSelectDay,
   monthKey,
 }: {
   weeks: (Date | null)[][]
   eventsByDay: Map<string, EventRow[]>
   today: Date
+  selectedDay: Date
+  onSelectDay: (date: Date) => void
   monthKey: string
 }) {
   const totalEvents = [...eventsByDay.values()].reduce((sum, list) => sum + list.length, 0)
@@ -48,6 +52,7 @@ export function CalendarGrid({
                   const key = dayKey(cell)
                   const dayEvents = eventsByDay.get(key) ?? []
                   const isToday = isSameDay(cell, today)
+                  const isSelected = isSameDay(cell, selectedDay)
 
                   return (
                     <td
@@ -57,34 +62,23 @@ export function CalendarGrid({
                       }`}
                     >
                       <div className="mx-auto flex aspect-square w-[32px] items-center justify-center sm:w-8">
-                        <span
+                        <button
+                          type="button"
+                          onClick={() => onSelectDay(cell)}
+                          aria-pressed={isSelected}
+                          aria-label={`Día ${cell.getDate()}`}
                           className={`flex h-7 w-7 items-center justify-center rounded-md text-[13px] font-extrabold tabular-nums transition-colors ${
-                            isToday
+                            isSelected
                               ? 'bg-lamp text-white shadow-[0_0_14px_rgba(227,27,35,0.5)]'
-                              : 'text-lit/85'
+                              : isToday
+                                ? 'ring-1 ring-inset ring-lamp/60 text-lamp'
+                                : 'text-lit/85 hover:bg-lit/10'
                           }`}
                         >
                           {cell.getDate()}
-                        </span>
+                        </button>
                       </div>
-                      <div className="mt-0.5 hidden flex-col gap-0.5 sm:flex">
-                        {dayEvents.slice(0, 2).map((ev) => (
-                          <Link
-                            key={ev.id}
-                            href={`/calendario/${ev.id}`}
-                            className="group flex items-start gap-1.5 rounded px-1 py-0.5 text-[11px] leading-snug text-lit/75 transition-colors hover:bg-lit/5"
-                          >
-                            <span className={`lamp mt-[5px] ${EVENT_TYPE_LAMP[ev.event_type]}`} />
-                            <span className="truncate group-hover:text-lit">{ev.title}</span>
-                          </Link>
-                        ))}
-                        {dayEvents.length > 2 ? (
-                          <p className="px-1 text-[11px] font-semibold text-lamp">
-                            +{dayEvents.length - 2} más
-                          </p>
-                        ) : null}
-                      </div>
-                      <div className="mt-1 flex justify-center gap-1 sm:hidden">
+                      <div className="mt-1 flex justify-center gap-1">
                         {dayEvents.slice(0, 3).map((ev) => (
                           <Link
                             key={ev.id}
@@ -93,6 +87,11 @@ export function CalendarGrid({
                             className={`h-1.5 w-1.5 rounded-full ${EVENT_TYPE_LAMP[ev.event_type]}`}
                           />
                         ))}
+                        {dayEvents.length > 3 ? (
+                          <span className="text-[9px] font-bold text-lit/40">
+                            +{dayEvents.length - 3}
+                          </span>
+                        ) : null}
                       </div>
                     </td>
                   )
