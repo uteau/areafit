@@ -13,6 +13,21 @@ export async function listRoutines(): Promise<(Routine & { exercise_count: numbe
   })) as (Routine & { exercise_count: number })[]
 }
 
+export async function listRoutinesForPlayer(
+  playerId: string
+): Promise<(Routine & { exercise_count: number })[]> {
+  const supabase = await createClient()
+  const { data } = await supabase
+    .from('routines')
+    .select('*, exercise_count:routine_exercises(count)')
+    .or(`assigned_to_player.eq.${playerId},assigned_to_group.in.(select group_id from player_group_members where player_id='${playerId}')`)
+    .order('created_at', { ascending: false })
+  return ((data as unknown) ?? []).map((r: any) => ({
+    ...r,
+    exercise_count: r.exercise_count?.count ?? 0,
+  })) as (Routine & { exercise_count: number })[]
+}
+
 export async function getRoutine(id: string): Promise<Routine & { exercises: Exercise[] } | null> {
   const supabase = await createClient()
   const { data: routine } = await supabase.from('routines').select('*').eq('id', id).single()
@@ -25,19 +40,43 @@ export async function getRoutine(id: string): Promise<Routine & { exercises: Exe
   return { ...(routine as Routine), exercises: (exercises as Exercise[]) ?? [] }
 }
 
-export async function createRoutine(input: { title: string; description: string }) {
+export async function createRoutine(input: {
+  title: string
+  description: string
+  assigned_to_player?: string | null
+  assigned_to_group?: string | null
+}) {
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
   const { error } = await supabase.from('routines').insert({
-    ...input,
+    title: input.title,
+    description: input.description,
     created_by: user?.id ?? null,
+    assigned_to_player: input.assigned_to_player ?? null,
+    assigned_to_group: input.assigned_to_group ?? null,
   })
   if (error) throw new Error('No se pudo crear la rutina')
 }
 
-export async function updateRoutine(id: string, input: { title: string; description: string }) {
+export async function updateRoutine(
+  id: string,
+  input: {
+    title: string
+    description: string
+    assigned_to_player?: string | null
+    assigned_to_group?: string | null
+  }
+) {
   const supabase = await createClient()
-  const { error } = await supabase.from('routines').update(input).eq('id', id)
+  const { error } = await supabase
+    .from('routines')
+    .update({
+      title: input.title,
+      description: input.description,
+      assigned_to_player: input.assigned_to_player ?? null,
+      assigned_to_group: input.assigned_to_group ?? null,
+    })
+    .eq('id', id)
   if (error) throw new Error('No se pudo actualizar la rutina')
 }
 
