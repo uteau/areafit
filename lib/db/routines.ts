@@ -7,7 +7,10 @@ export async function listRoutines(): Promise<(Routine & { exercise_count: numbe
     .from('routines')
     .select('*, exercise_count:routine_exercises(count)')
     .order('created_at', { ascending: false })
-  return ((data as unknown) ?? []) as (Routine & { exercise_count: number })[]
+  return ((data as unknown) ?? []).map((r: any) => ({
+    ...r,
+    exercise_count: r.exercise_count?.count ?? 0,
+  })) as (Routine & { exercise_count: number })[]
 }
 
 export async function getRoutine(id: string): Promise<Routine & { exercises: Exercise[] } | null> {
