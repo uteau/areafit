@@ -1,13 +1,18 @@
-import type { Routine } from '@/lib/types'
+import type { PlayerGroup, Profile, Routine } from '@/lib/types'
+import { RoutineAssignmentSelect } from '@/components/routine-assignment-select'
 
 export function RoutineForm({
   action,
   defaults,
   submitLabel,
+  players,
+  groups,
 }: {
   action: (formData: FormData) => void
-  defaults?: Pick<Routine, 'title' | 'description'>
+  defaults?: Pick<Routine, 'title' | 'description' | 'assigned_to_player' | 'assigned_to_group'>
   submitLabel: string
+  players?: Profile[]
+  groups?: PlayerGroup[]
 }) {
   return (
     <form action={action} className="panel max-w-lg space-y-4 p-6">
@@ -25,6 +30,21 @@ export function RoutineForm({
           className="field"
         />
       </label>
+
+      {players && groups ? (
+        <RoutineAssignmentSelect
+          players={players}
+          groups={groups}
+          defaults={
+            defaults
+              ? {
+                  assigned_to_player: defaults.assigned_to_player ?? null,
+                  assigned_to_group: defaults.assigned_to_group ?? null,
+                }
+              : undefined
+          }
+        />
+      ) : null}
 
       <button type="submit" className="btn btn-primary">
         {submitLabel}

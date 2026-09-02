@@ -1,13 +1,18 @@
 import Link from 'next/link'
-import { listRoutines } from '@/lib/db/routines'
+import { listRoutines, listRoutinesForPlayer } from '@/lib/db/routines'
 import { currentProfile } from '@/lib/db/users'
 import { isStaff } from '@/lib/access'
 import { PageHeader } from '@/components/page-header'
+import { RoutineAssignmentBadge } from '@/components/routine-assignment-badge'
 import { IconPlus } from '@/components/icons'
 
 export default async function RutinasPage() {
-  const [routines, profile] = await Promise.all([listRoutines(), currentProfile()])
+  const profile = await currentProfile()
   const staff = isStaff(profile?.role ?? null)
+
+  const routines = staff
+    ? await listRoutines()
+    : await listRoutinesForPlayer(profile?.id ?? '')
 
   return (
     <div>
@@ -21,7 +26,9 @@ export default async function RutinasPage() {
       </PageHeader>
 
       {routines.length === 0 ? (
-        <p className="text-sm font-medium text-lit/45">No hay rutinas todavía</p>
+        <p className="text-sm font-medium text-lit/45">
+          {staff ? 'No hay rutinas todavía' : 'No tienes rutinas asignadas'}
+        </p>
       ) : (
         <div className="grid gap-4 md:grid-cols-2">
           {routines.map((routine) => (
@@ -34,9 +41,17 @@ export default async function RutinasPage() {
               {routine.description ? (
                 <p className="mt-1 truncate text-sm text-lit/55">{routine.description}</p>
               ) : null}
-              <p className="mt-3 text-xs font-semibold text-lit/45">
-                {routine.exercise_count} {routine.exercise_count === 1 ? 'ejercicio' : 'ejercicios'}
-              </p>
+              <div className="mt-3 flex items-center justify-between">
+                <p className="text-xs font-semibold text-lit/45">
+                  {routine.exercise_count} {routine.exercise_count === 1 ? 'ejercicio' : 'ejercicios'}
+                </p>
+                {!staff ? (
+                  <RoutineAssignmentBadge
+                    assignedToPlayer={routine.assigned_to_player}
+                    assignedToGroup={routine.assigned_to_group}
+                  />
+                ) : null}
+              </div>
             </Link>
           ))}
         </div>

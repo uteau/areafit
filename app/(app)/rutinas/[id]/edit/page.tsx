@@ -1,6 +1,7 @@
 import { notFound, redirect } from 'next/navigation'
 import { isStaff } from '@/lib/access'
-import { currentProfile } from '@/lib/db/users'
+import { currentProfile, listProfiles } from '@/lib/db/users'
+import { listGroups } from '@/lib/db/groups'
 import { getRoutine } from '@/lib/db/routines'
 import { updateRoutine } from '@/actions/routines'
 import { RoutineForm } from '@/components/routine-form'
@@ -16,8 +17,14 @@ export default async function EditRoutinePage({
   const profile = await currentProfile()
   if (!isStaff(profile?.role ?? null)) redirect('/no-autorizado')
 
-  const routine = await getRoutine(id)
+  const [routine, allProfiles, groups] = await Promise.all([
+    getRoutine(id),
+    listProfiles(),
+    listGroups(),
+  ])
   if (!routine) notFound()
+
+  const players = allProfiles.filter((p) => p.role === 'deportista')
 
   return (
     <div className="mx-auto max-w-2xl">
@@ -27,6 +34,8 @@ export default async function EditRoutinePage({
         action={async (fd) => updateRoutine(id, fd)}
         defaults={routine}
         submitLabel="Guardar cambios"
+        players={players}
+        groups={groups}
       />
       <ExerciseEditor routineId={id} exercises={routine.exercises} />
     </div>
