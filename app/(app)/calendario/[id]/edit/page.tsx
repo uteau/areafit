@@ -5,6 +5,7 @@ import { getEvent } from '@/lib/db/events'
 import { updateEvent } from '@/actions/events'
 import { EventForm } from '@/components/event-form'
 import { notFound } from 'next/navigation'
+import { PageHeader } from '@/components/page-header'
 
 export default async function EditEventPage({
   params,
@@ -20,7 +21,7 @@ export default async function EditEventPage({
 
   return (
     <div>
-      <h1 className="mb-6 text-2xl font-semibold tracking-tight">Editar evento</h1>
+      <PageHeader title="Editar evento" />
       <EventForm
         action={async (fd) => updateEvent(id, fd)}
         defaults={event}

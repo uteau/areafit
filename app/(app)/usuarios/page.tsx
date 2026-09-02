@@ -4,6 +4,7 @@ import { currentProfile, listProfiles } from '@/lib/db/users'
 import { createAdminClient } from '@/lib/supabase/admin'
 import { UserForm } from '@/components/user-form'
 import { UserTable } from '@/components/user-table'
+import { PageHeader } from '@/components/page-header'
 
 export default async function UsuariosPage() {
   const profile = await currentProfile()
@@ -18,7 +19,7 @@ export default async function UsuariosPage() {
 
   return (
     <div>
-      <h1 className="mb-6 text-2xl font-semibold tracking-tight">Equipo</h1>
+      <PageHeader title="Equipo" />
       <div className="grid gap-6 lg:grid-cols-[380px_1fr]">
         <UserForm />
         <UserTable users={users} />

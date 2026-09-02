@@ -13,9 +13,6 @@ function nowLocalInput() {
   return toLocalInput(new Date().toISOString())
 }
 
-const inputClass =
-  'rounded-md border border-slate-300 px-3 py-2 text-slate-900 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100'
-
 export function EventForm({
   action,
   defaults,
@@ -26,18 +23,18 @@ export function EventForm({
   submitLabel: string
 }) {
   return (
-    <form action={action} className="max-w-lg space-y-4 rounded-xl border border-slate-200 bg-white p-6">
-      <label className="flex flex-col gap-1 text-sm">
-        <span className="font-medium text-slate-700">Título</span>
-        <input name="title" required defaultValue={defaults?.title} className={inputClass} />
+    <form action={action} className="panel max-w-lg space-y-4 p-6">
+      <label className="flex flex-col gap-1.5 text-sm font-semibold text-lit/80">
+        <span>Título</span>
+        <input name="title" required defaultValue={defaults?.title} className="field" />
       </label>
 
-      <label className="flex flex-col gap-1 text-sm">
-        <span className="font-medium text-slate-700">Tipo</span>
+      <label className="flex flex-col gap-1.5 text-sm font-semibold text-lit/80">
+        <span>Tipo</span>
         <select
           name="event_type"
           defaultValue={defaults?.event_type ?? 'entrenamiento'}
-          className={inputClass}
+          className="field"
         >
           {TYPES.map((t) => (
             <option key={t} value={t}>
@@ -47,36 +44,33 @@ export function EventForm({
         </select>
       </label>
 
-      <label className="flex flex-col gap-1 text-sm">
-        <span className="font-medium text-slate-700">Fecha y hora</span>
+      <label className="flex flex-col gap-1.5 text-sm font-semibold text-lit/80">
+        <span>Fecha y hora</span>
         <input
           name="starts_at"
           type="datetime-local"
           required
           defaultValue={defaults ? toLocalInput(defaults.starts_at) : nowLocalInput()}
-          className={inputClass}
+          className="field"
         />
       </label>
 
-      <label className="flex flex-col gap-1 text-sm">
-        <span className="font-medium text-slate-700">Lugar</span>
-        <input name="location" defaultValue={defaults?.location ?? ''} className={inputClass} />
+      <label className="flex flex-col gap-1.5 text-sm font-semibold text-lit/80">
+        <span>Lugar</span>
+        <input name="location" defaultValue={defaults?.location ?? ''} className="field" />
       </label>
 
-      <label className="flex flex-col gap-1 text-sm">
-        <span className="font-medium text-slate-700">Descripción</span>
+      <label className="flex flex-col gap-1.5 text-sm font-semibold text-lit/80">
+        <span>Descripción</span>
         <textarea
           name="description"
           rows={4}
           defaultValue={defaults?.description ?? ''}
-          className={inputClass}
+          className="field"
         />
       </label>
 
-      <button
-        type="submit"
-        className="rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700"
-      >
+      <button type="submit" className="btn btn-primary">
         {submitLabel}
       </button>
     </form>

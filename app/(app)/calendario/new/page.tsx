@@ -3,6 +3,7 @@ import { isStaff } from '@/lib/access'
 import { currentProfile } from '@/lib/db/users'
 import { createEvent } from '@/actions/events'
 import { EventForm } from '@/components/event-form'
+import { PageHeader } from '@/components/page-header'
 
 export default async function NewEventPage() {
   const profile = await currentProfile()
@@ -10,7 +11,7 @@ export default async function NewEventPage() {
 
   return (
     <div>
-      <h1 className="mb-6 text-2xl font-semibold tracking-tight">Nuevo evento</h1>
+      <PageHeader title="Nuevo evento" />
       <EventForm action={createEvent} submitLabel="Crear evento" />
     </div>
   )

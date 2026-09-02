@@ -1,0 +1,305 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-02T01:25:00-03:00",
+  "title": "Design System: AreaFit",
+  "extensions": {
+    "colorMeta": {
+      "hall": {
+        "role": "neutral",
+        "displayName": "Pabellón",
+        "canonical": "#0b0c0e",
+        "tonalRamp": [
+          "oklch(15% 0.008 250)",
+          "oklch(22% 0.01 250)",
+          "oklch(30% 0.012 250)",
+          "oklch(38% 0.014 250)",
+          "oklch(48% 0.016 250)",
+          "oklch(58% 0.018 250)",
+          "oklch(72% 0.02 250)",
+          "oklch(88% 0.022 250)"
+        ]
+      },
+      "cabinet": {
+        "role": "neutral",
+        "displayName": "Cabina",
+        "canonical": "#121316",
+        "tonalRamp": [
+          "oklch(16% 0.01 252)",
+          "oklch(23% 0.012 252)",
+          "oklch(31% 0.014 252)",
+          "oklch(40% 0.016 252)",
+          "oklch(50% 0.018 252)",
+          "oklch(60% 0.02 252)",
+          "oklch(74% 0.022 252)",
+          "oklch(89% 0.024 252)"
+        ]
+      },
+      "plate": {
+        "role": "neutral",
+        "displayName": "Placa",
+        "canonical": "#1a1c20",
+        "tonalRamp": [
+          "oklch(18% 0.012 254)",
+          "oklch(26% 0.014 254)",
+          "oklch(34% 0.016 254)",
+          "oklch(43% 0.018 254)",
+          "oklch(53% 0.02 254)",
+          "oklch(63% 0.022 254)",
+          "oklch(76% 0.024 254)",
+          "oklch(89% 0.028 254)"
+        ]
+      },
+      "seam": {
+        "role": "neutral",
+        "displayName": "Costura",
+        "canonical": "#26282d",
+        "tonalRamp": [
+          "oklch(22% 0.016 258)",
+          "oklch(30% 0.018 258)",
+          "oklch(38% 0.02 258)",
+          "oklch(47% 0.022 258)",
+          "oklch(57% 0.024 258)",
+          "oklch(67% 0.026 258)",
+          "oklch(79% 0.028 258)",
+          "oklch(91% 0.03 258)"
+        ]
+      },
+      "seam-bright": {
+        "role": "neutral",
+        "displayName": "Costura Encendida",
+        "canonical": "#363940",
+        "tonalRamp": [
+          "oklch(28% 0.022 260)",
+          "oklch(36% 0.024 260)",
+          "oklch(45% 0.026 260)",
+          "oklch(54% 0.028 260)",
+          "oklch(63% 0.03 260)",
+          "oklch(72% 0.032 260)",
+          "oklch(82% 0.034 260)",
+          "oklch(93% 0.036 260)"
+        ]
+      },
+      "lamp": {
+        "role": "primary",
+        "displayName": "La Lámpara",
+        "canonical": "#e31b23",
+        "tonalRamp": [
+          "oklch(18% 0.14 22)",
+          "oklch(26% 0.18 24)",
+          "oklch(34% 0.21 26)",
+          "oklch(42% 0.23 26)",
+          "oklch(50% 0.24 26)",
+          "oklch(58% 0.24 24)",
+          "oklch(70% 0.18 18)",
+          "oklch(85% 0.1 12)"
+        ]
+      },
+      "lamp-hot": {
+        "role": "primary",
+        "displayName": "Lámpara al Rojo Vivo",
+        "canonical": "#ff2e37",
+        "tonalRamp": [
+          "oklch(20% 0.16 18)",
+          "oklch(29% 0.2 20)",
+          "oklch(38% 0.23 22)",
+          "oklch(47% 0.25 22)",
+          "oklch(56% 0.26 20)",
+          "oklch(65% 0.24 16)",
+          "oklch(76% 0.17 10)",
+          "oklch(89% 0.09 6)"
+        ]
+      },
+      "lit": {
+        "role": "neutral",
+        "displayName": "Iluminado",
+        "canonical": "#f5f5f1",
+        "tonalRamp": [
+          "oklch(20% 0.006 90)",
+          "oklch(29% 0.008 90)",
+          "oklch(38% 0.01 90)",
+          "oklch(48% 0.012 90)",
+          "oklch(58% 0.014 90)",
+          "oklch(68% 0.016 90)",
+          "oklch(80% 0.018 90)",
+          "oklch(94% 0.02 90)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display del Marcador",
+        "purpose": "Títulos de página, del evento y del mes; números protagonistas de la tablilla."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Párrafos, descripciones y metadata de cabina."
+      },
+      "label": {
+        "displayName": "Etiqueta",
+        "purpose": "Eyebrows de sección y encabezados de columna en mayúsculas compactas."
+      }
+    },
+    "shadows": [
+      {
+        "name": "lamp-glow-sm",
+        "value": "0 0 10px rgb(227 27 35 / 0.55)",
+        "purpose": "Halo corto de la lámpara: dot de marca, lámpara de partido, punto de ejercicio."
+      },
+      {
+        "name": "lamp-glow-md",
+        "value": "0 0 18px rgb(227 27 35 / 0.45)",
+        "purpose": "Hover de la acción primaria encendida."
+      },
+      {
+        "name": "today-chip-glow",
+        "value": "0 0 14px rgb(227 27 35 / 0.5)",
+        "purpose": "Segmento rojo del día de hoy en el calendario."
+      },
+      {
+        "name": "brand-dot-glow",
+        "value": "0 0 12px 1px rgb(227 27 35 / 0.55)",
+        "purpose": "Punto de lámpara del logotipo."
+      },
+      {
+        "name": "bench-shadow",
+        "value": "0 24px 60px -20px rgb(0 0 0 / 0.6)",
+        "purpose": "Sombra de banquillo: asienta el panel de login sobre el fondo."
+      }
+    ],
+    "motion": [
+      {
+        "name": "state-fast",
+        "value": "background-color 140ms ease-out, color 140ms ease-out, border-color 140ms ease-out",
+        "purpose": "Transiciones de estado de botones, campos y navegación."
+      },
+      {
+        "name": "glow-slow",
+        "value": "box-shadow 180ms ease-out",
+        "purpose": "El halo de lámpara enciende con retardo suave."
+      },
+      {
+        "name": "poweron",
+        "value": "opacity 380ms ease-out both",
+        "purpose": "Parpadeo de encendido de la tablilla al cambiar de mes. Se respeta prefers-reduced-motion."
+      }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" },
+      { "name": "xl", "value": "1280px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "La voz de acción primaria: enciende la lámpara. Una por vista.",
+      "html": "<button class=\"ds-btn ds-btn-primary\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" aria-hidden=\"true\"><path d=\"M12 5v14M5 12h14\"/></svg>Nuevo evento</button>",
+      "css": ".ds-btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:8px 14px;border:none;border-radius:8px;font-family:\"DM Sans Variable\",ui-sans-serif,system-ui,sans-serif;font-size:14px;font-weight:700;line-height:1.25;letter-spacing:0.01em;color:#fff;background:#e31b23;cursor:pointer;transition:background-color 140ms ease-out,box-shadow 180ms ease-out;}.ds-btn-primary:hover{background:#ff2e37;box-shadow:0 0 18px rgb(227 27 35/0.45);}.ds-btn-primary:focus-visible{outline:2px solid #e31b23;outline-offset:2px;}"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Acción secundaria de cabina: navegación y Añadir ejercicio.",
+      "html": "<button class=\"ds-btn ds-btn-ghost\">Añadir ejercicio</button>",
+      "css": ".ds-btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:8px 14px;border-radius:8px;font-family:\"DM Sans Variable\",ui-sans-serif,system-ui,sans-serif;font-size:14px;font-weight:700;line-height:1.25;letter-spacing:0.01em;background:transparent;color:#f5f5f1;cursor:pointer;transition:background-color 140ms ease-out,border-color 140ms ease-out;}.ds-btn-ghost{border:1px solid #363940;}.ds-btn-ghost:hover{border-color:rgb(255 255 255/0.3);background:rgb(255 255 255/0.04);}.ds-btn-ghost:focus-visible{outline:2px solid #e31b23;outline-offset:2px;}"
+    },
+    {
+      "name": "Danger Button",
+      "kind": "button",
+      "refersTo": "button-danger",
+      "description": "Eliminar y desactivar: contorno rojo apagado que se enciende al pasar.",
+      "html": "<button class=\"ds-btn ds-btn-danger\">Eliminar</button>",
+      "css": ".ds-btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:8px 14px;border-radius:8px;font-family:\"DM Sans Variable\",ui-sans-serif,system-ui,sans-serif;font-size:14px;font-weight:700;line-height:1.25;letter-spacing:0.01em;background:transparent;cursor:pointer;transition:background-color 140ms ease-out,border-color 140ms ease-out;color:#ff8b90;}.ds-btn-danger{border:1px solid rgb(227 27 35/0.5);}.ds-btn-danger:hover{border-color:#e31b23;background:rgb(227 27 35/0.12);}.ds-btn-danger:focus-visible{outline:2px solid #e31b23;outline-offset:2px;}"
+    },
+    {
+      "name": "Text Field",
+      "kind": "input",
+      "refersTo": "field",
+      "description": "Campo de cabina: fondo oscuro, borde costura y foco por lámpara.",
+      "html": "<label style=\"display:flex;flex-direction:column;gap:6px;font-family:\"DM Sans Variable\",ui-sans-serif,system-ui,sans-serif;font-size:14px;font-weight:600;color:rgb(245 245 241/0.8);\"><span>Lugar</span><input type=\"text\" placeholder=\"Polideportivo Central\" class=\"ds-field\"></label>",
+      "css": ".ds-field{width:100%;box-sizing:border-box;padding:9px 12px;border:1px solid #26282d;border-radius:8px;background:#121316;color:#f5f5f1;font-family:\"DM Sans Variable\",ui-sans-serif,system-ui,sans-serif;font-size:14px;caret-color:#e31b23;transition:border-color 140ms ease-out,box-shadow 140ms ease-out;}.ds-field::placeholder{color:rgb(245 245 241/0.45);}.ds-field:focus{outline:none;border-color:#e31b23;box-shadow:0 0 0 3px rgb(227 27 35/0.22);}"
+    },
+    {
+      "name": "Cabinet Panel",
+      "kind": "card",
+      "refersTo": "panel",
+      "description": "Contenedor estándar de cabina para calendario, detalle de evento, formularios y tablas.",
+      "html": "<div class=\"ds-panel\"><p class=\"ds-kicker\">Área Fit · Voleibol</p><h3 class=\"ds-title\">Calendario</h3><p class=\"ds-body\">El mes como tablilla: celdas de cabina, números tabulares y la lámpara de hoy encendida.</p></div>",
+      "css": ".ds-panel{box-sizing:border-box;padding:20px;border:1px solid #26282d;border-radius:14px;background:#121316;}.ds-kicker{margin:0 0 6px;font-family:\"DM Sans Variable\",ui-sans-serif,system-ui,sans-serif;font-size:11px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:rgb(245 245 241/0.55);}.ds-title{margin:0;font-family:\"DM Sans Variable\",ui-sans-serif,system-ui,sans-serif;font-weight:800;letter-spacing:-0.02em;line-height:1.05;font-size:28px;color:#f5f5f1;}.ds-body{margin:10px 0 0;font-family:\"DM Sans Variable\",ui-sans-serif,system-ui,sans-serif;font-size:14px;line-height:1.5;color:rgb(245 245 241/0.8);}"
+    },
+    {
+      "name": "Role Pill",
+      "kind": "chip",
+      "refersTo": "pill",
+      "description": "Píldora de rol sobre la placa: Admin / Entrenador / Deportista.",
+      "html": "<span class=\"ds-pill\">Deportista</span>",
+      "css": ".ds-pill{display:inline-flex;align-items:center;height:24px;padding:0 10px;box-sizing:border-box;border:1px solid #363940;border-radius:9999px;background:#1a1c20;color:#f5f5f1;font-family:\"DM Sans Variable\",ui-sans-serif,system-ui,sans-serif;font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;line-height:1;}"
+    },
+    {
+      "name": "Nav Item",
+      "kind": "nav",
+      "refersTo": "nav-item",
+      "description": "Ítem de la consola del lateral y de navegación móvil; activo con fondo de lámpara tenue.",
+      "html": "<a class=\"ds-nav ds-nav-active\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"3\" y=\"5\" width=\"18\" height=\"16\" rx=\"2.5\"/><path d=\"M8 3v4M16 3v4M3 10h18\"/></svg>Calendario</a>",
+      "css": ".ds-nav{display:flex;align-items:center;gap:10px;width:100%;box-sizing:border-box;padding:8px 12px;border-radius:8px;font-family:\"DM Sans Variable\",ui-sans-serif,system-ui,sans-serif;font-size:14px;font-weight:600;letter-spacing:0.01em;text-decoration:none;color:#f5f5f1;background:#121316;transition:background-color 160ms ease-out,color 160ms ease-out;}.ds-nav:hover{background:rgb(255 255 255/0.04);}.ds-nav-active,.ds-nav-active:hover{background:rgb(227 27 35/0.14);color:#ffffff;}"
+    },
+    {
+      "name": "Event Type Lamp",
+      "kind": "custom",
+      "refersTo": "lamp",
+      "description": "La lámpara de tipo de evento: partido roja encendida, entrenamiento blanca, evento apagada.",
+      "html": "<div style=\"display:flex;align-items:center;gap:16px;font-family:\"DM Sans Variable\",ui-sans-serif,system-ui,sans-serif;font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#f5f5f1;\"><span style=\"display:inline-flex;align-items:center;gap:6px;\"><span class=\"ds-lamp ds-lamp-partido\"></span>Partido</span><span style=\"display:inline-flex;align-items:center;gap:6px;\"><span class=\"ds-lamp ds-lamp-train\"></span>Entrenamiento</span><span style=\"display:inline-flex;align-items:center;gap:6px;\"><span class=\"ds-lamp ds-lamp-off\"></span>Evento</span></div>",
+      "css": ".ds-lamp{display:inline-block;width:8px;height:8px;border-radius:9999px;flex:none;}.ds-lamp-partido{background:#e31b23;box-shadow:0 0 10px rgb(227 27 35/0.55);}.ds-lamp-train{background:#f5f5f1;}.ds-lamp-off{background:transparent;box-shadow:inset 0 0 0 1.5px #363940;}"
+    }
+  ],
+  "narrative": {
+    "northStar": "La Tablilla del Pabellón",
+    "overview": "Cada pantalla es la tablilla electrónica del pabellón: los jugadores la leen sin despegarse del banco. La cabina negra es el fondo y el rojo E31B23 la única lámpara viva. El calendario es un marcador: el día de hoy es un segmento rojo encendido, el próximo partido brilla, y cada tipo de evento tiene su propia lámpara (partido roja, entrenamiento blanca encendida, evento apagada). El staff enciende lámparas desde formularios de cabina.\n\nEl sistema es denso, nocturno y discreto: superficies de cabina apiladas sobre el fondo hall, bordes de costura de 1 px, texto lit tintado por opacidad. La gravedad visual vive en el contraste del rojo lámpara sobre el negro, no en brillos, gradientes ni sombras decorativas. Números tabulares y DM Sans en peso 800 forman la voz de marcador; su letra condensada y el tracking apretado -0.02em distinguen los títulos de lectura del cuerpo de la interfaz.\n\nLa única referencia visual confirmada que se rechaza es la caja gris genérica del CRUD convencional: paneles blancos, azules por defecto de sistema y fondos claros. Ese mundo no entra; si una vista nueva llega con esa estética, se re-traduce a la cabina.",
+    "keyCharacteristics": [
+      "Un solo acento: el rojo lámpara #E31B23, usado con moderación.",
+      "Superficies siempre oscuras y tonales; nunca blanco puro.",
+      "Sonido de marcador: títulos readout (peso 800), horas y conteos tabulares.",
+      "Bordes de 1 px en seam/seam-bright; profundidad por capas tonales, no por sombras.",
+      "Interfaz íntegra en español; estados vacíos y errores en el idioma del jugador."
+    ],
+    "rules": [
+      {
+        "name": "La Regla de la Lámpara Única",
+        "body": "El rojo lámpara se enciende solo en lo que importa: hoy, partidos, acción primaria y foco. Su rareza es la señal. Más de un elemento rojo dominante por tarjeta es ruido.",
+        "section": "colors"
+      },
+      {
+        "name": "La Regla de la Cabina",
+        "body": "Toda superficie es cabinet alzándose sobre hall. Las cajas claras, el blanco y los azules de sistema no pertenecen a este mundo.",
+        "section": "colors"
+      },
+      {
+        "name": "La Regla del Marcador",
+        "body": "Los números miden; no se decoran. El tracking nunca baja de -0.04em, y el título de lectura manda con peso, no con tamaño gigante.",
+        "section": "typography"
+      },
+      {
+        "name": "La Regla de Foco por Lámpara",
+        "body": "El foco de teclado es un anillo de 2 px en lamp con offset 2 px sobre el elemento activo — nada de anillos azules de sistema.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do construir toda superficie sobre cabinet/plate y el fondo sobre hall; lit para texto y sus opacidades para los secundarios.",
+      "Do encender la lámpara solo en lo que importa: hoy, partidos, acción primaria, foco.",
+      "Do usar readout (800, tracking -0.02em) para títulos protagonistas y tabular-nums para horas, fechas y conteos.",
+      "Do mantener España: bordes de 1 px seam, radio 8-14 px, estados vacíos y errores en español."
+    ],
+    "donts": [
+      "Don't usar cajas claras, blanco puro, slate* o azules de sistema en ninguna superficie.",
+      "Don't colocar más de una acción btn-primary por complemento de vista.",
+      "Don't aplicar brillo rojo donde no hay una lámpara encendida.",
+      "Don't usar gradientes de texto, sombras duras de offset o border-left de color para avisos.",
+      "Don't cambiar la semana del calendario a domingo; la semana empieza en lunes."
+    ]
+  }
+}

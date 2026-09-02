@@ -13,25 +13,18 @@ export function RoleForm({ userId, currentRole }: { userId: string; currentRole:
 
   return (
     <form action={formAction} className="flex items-center gap-2">
-      <select
-        name="role"
-        defaultValue={currentRole}
-        className="rounded-md border border-slate-300 px-2 py-1 text-sm text-slate-700"
-      >
+      <select name="role" defaultValue={currentRole} className="field !w-auto !py-1.5">
         {ROLES.map((r) => (
           <option key={r} value={r}>
             {labelOf(r)}
           </option>
         ))}
       </select>
-      <button
-        type="submit"
-        className="rounded-md bg-slate-900 px-3 py-1 text-sm font-medium text-white transition-colors hover:bg-slate-700"
-      >
+      <button type="submit" className="btn btn-ghost !px-3 !py-1.5">
         Guardar
       </button>
       {state?.error ? (
-        <span className="text-xs text-red-600" role="alert">
+        <span className="text-xs font-semibold text-lamp" role="alert">
           {state.error}
         </span>
       ) : null}
