@@ -57,6 +57,8 @@ export function GroupMemberManager({
         </ul>
       )}
 
+      <h3 className="text-sm font-bold text-lit/80">Agregar miembro</h3>
+
       {available.length === 0 ? (
         <p className="text-sm font-medium text-lit/45">Todos los deportistas ya están en el grupo</p>
       ) : (

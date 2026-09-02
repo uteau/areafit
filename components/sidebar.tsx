@@ -21,8 +21,10 @@ function navItems(role: Role) {
     { href: '/calendario', label: 'Calendario', icon: IconCalendar },
     { href: '/rutinas', label: 'Rutinas', icon: IconDumbbell },
   ]
-  if (isStaff(role)) base.push({ href: '/usuarios', label: 'Equipo', icon: IconUsers })
-  if (isStaff(role)) base.push({ href: '/grupos', label: 'Grupos', icon: IconUsersGroup })
+  if (isStaff(role)) {
+    base.push({ href: '/grupos', label: 'Grupos', icon: IconUsersGroup })
+    base.push({ href: '/usuarios', label: 'Equipo', icon: IconUsers })
+  }
   return base
 }
 
