@@ -69,6 +69,28 @@ export function IconUsers({ size = 18, className }: { size?: number; className?:
   )
 }
 
+export function IconUsersGroup({ size = 18, className }: { size?: number; className?: string }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.75"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden="true"
+    >
+      <circle cx="7" cy="9" r="3" />
+      <path d="M2.5 18a4 4 0 0 1 8 0" />
+      <circle cx="17" cy="9" r="3" />
+      <path d="M14 18a4 4 0 0 1 8 0" />
+    </svg>
+  )
+}
+
 export function IconMenu({ size = 18, className }: { size?: number; className?: string }) {
   return (
     <svg
