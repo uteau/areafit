@@ -24,14 +24,14 @@ function navItems(role: Role) {
   return base
 }
 
-function MobileHeader({ profile }: { profile: { id: string; full_name: string; role: Role } }) {
+export function MobileHeader({ profile }: { profile: { id: string; full_name: string; role: Role } }) {
   const [open, setOpen] = useState(false)
-  const panelRef = useRef<HTMLDivElement>(null)
+  const headerRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
     if (!open) return
     function onPointerDown(e: PointerEvent) {
-      if (panelRef.current && !panelRef.current.contains(e.target as Node)) setOpen(false)
+      if (headerRef.current && !headerRef.current.contains(e.target as Node)) setOpen(false)
     }
     function onKeyDown(e: KeyboardEvent) {
       if (e.key === 'Escape') setOpen(false)
@@ -45,7 +45,10 @@ function MobileHeader({ profile }: { profile: { id: string; full_name: string; r
   }, [open])
 
   return (
-    <header className="lg:hidden sticky top-0 z-30 border-b border-seam bg-cabinet/95 backdrop-blur">
+    <header
+      ref={headerRef}
+      className="lg:hidden sticky top-0 z-30 border-b border-seam bg-cabinet/95 backdrop-blur"
+    >
       <div className="flex h-14 items-center justify-between px-5 pt-[env(safe-area-inset-top)]">
         <span className="brand text-sm">
           <span className="brand-dot" aria-hidden="true" />
@@ -65,7 +68,6 @@ function MobileHeader({ profile }: { profile: { id: string; full_name: string; r
 
       {open ? (
         <div
-          ref={panelRef}
           role="menu"
           className="absolute inset-x-4 top-[calc(100%+0.5rem)] z-30 rounded-xl border border-seam bg-cabinet p-4 shadow-[0_24px_60px_-20px_rgb(0_0_0/0.6)]"
         >

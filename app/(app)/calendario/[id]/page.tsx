@@ -16,10 +16,10 @@ export default async function EventDetailPage({
   params: Promise<{ id: string }>
 }) {
   const { id } = await params
-  const event = await getEvent(id)
+
+  const [event, profile] = await Promise.all([getEvent(id), currentProfile()])
   if (!event) notFound()
 
-  const profile = await currentProfile()
   const staff = isStaff(profile?.role ?? null)
 
   const startsAt = new Date(event.starts_at)

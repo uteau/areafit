@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { createClient } from "@/lib/supabase/server";
 import { listEvents } from "@/lib/db/events";
+import { currentProfile } from "@/lib/db/users";
 import { getMonthGrid, dayKey } from "@/lib/calendar";
 import { isStaff } from "@/lib/access";
 import { CalendarGrid } from "@/components/calendar-grid";
@@ -25,7 +25,7 @@ export default async function CalendarioPage({
   const month = params.mes ? Number(params.mes) : now.getMonth();
 
   const weeks = getMonthGrid(year, month);
-  const events = await listEvents();
+  const [events, profile] = await Promise.all([listEvents(), currentProfile()]);
 
   const eventsByDay = new Map<string, EventRow[]>();
   for (const ev of events) {
@@ -41,15 +41,6 @@ export default async function CalendarioPage({
     )
     .slice(0, 10);
 
-  const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-  const { data: profile } = await supabase
-    .from("profiles")
-    .select("role")
-    .eq("id", user?.id)
-    .single();
   const staff = isStaff(profile?.role ?? null);
 
   const prev = addMonths(year, month, -1);

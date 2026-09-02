@@ -6,8 +6,7 @@ import { PageHeader } from '@/components/page-header'
 import { IconPlus } from '@/components/icons'
 
 export default async function RutinasPage() {
-  const routines = await listRoutines()
-  const profile = await currentProfile()
+  const [routines, profile] = await Promise.all([listRoutines(), currentProfile()])
   const staff = isStaff(profile?.role ?? null)
 
   return (

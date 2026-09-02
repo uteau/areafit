@@ -14,10 +14,10 @@ export default async function RoutineDetailPage({
   params: Promise<{ id: string }>
 }) {
   const { id } = await params
-  const routine = await getRoutine(id)
+
+  const [routine, profile] = await Promise.all([getRoutine(id), currentProfile()])
   if (!routine) notFound()
 
-  const profile = await currentProfile()
   const staff = isStaff(profile?.role ?? null)
 
   return (
