@@ -35,9 +35,20 @@ export async function createRoutine(formData: FormData) {
 
   const title = String(formData.get('title'))
   if (!title) throw new Error('El título es obligatorio')
+
+  const assignmentType = formData.get('assignment_type') as string | null
+  const assignedToPlayer = assignmentType === 'player'
+    ? (String(formData.get('assigned_to_player')) || null)
+    : null
+  const assignedToGroup = assignmentType === 'group'
+    ? (String(formData.get('assigned_to_group')) || null)
+    : null
+
   await dbCreateRoutine({
     title,
     description: String(formData.get('description') ?? ''),
+    assigned_to_player: assignedToPlayer,
+    assigned_to_group: assignedToGroup,
   })
   revalidatePath('/rutinas')
   redirect('/rutinas')
@@ -47,11 +58,22 @@ export async function updateRoutine(id: string, formData: FormData) {
   const profile = await currentProfile()
   assertStaff(profile?.role)
 
+  const assignmentType = formData.get('assignment_type') as string | null
+  const assignedToPlayer = assignmentType === 'player'
+    ? (String(formData.get('assigned_to_player')) || null)
+    : null
+  const assignedToGroup = assignmentType === 'group'
+    ? (String(formData.get('assigned_to_group')) || null)
+    : null
+
   await dbUpdateRoutine(id, {
     title: String(formData.get('title')),
     description: String(formData.get('description') ?? ''),
+    assigned_to_player: assignedToPlayer,
+    assigned_to_group: assignedToGroup,
   })
   revalidatePath('/rutinas')
+  revalidatePath(`/rutinas/${id}`)
   redirect(`/rutinas/${id}`)
 }
 
