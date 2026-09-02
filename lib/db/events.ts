@@ -1,9 +1,13 @@
 import { createClient } from '@/lib/supabase/server'
 import type { EventFormInput, EventRow } from '@/lib/types'
 
-export async function listEvents(): Promise<EventRow[]> {
+export async function listEvents(from?: Date, to?: Date, limit?: number): Promise<EventRow[]> {
   const supabase = await createClient()
-  const { data } = await supabase.from('events').select('*').order('starts_at', { ascending: true })
+  let query = supabase.from('events').select('*')
+  if (from) query = query.gte('starts_at', from.toISOString())
+  if (to) query = query.lte('starts_at', to.toISOString())
+  if (limit) query = query.limit(limit)
+  const { data } = await query.order('starts_at', { ascending: true })
   return (data as EventRow[]) ?? []
 }
 

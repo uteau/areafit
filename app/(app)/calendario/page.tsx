@@ -25,21 +25,19 @@ export default async function CalendarioPage({
   const month = params.mes ? Number(params.mes) : now.getMonth();
 
   const weeks = getMonthGrid(year, month);
-  const [events, profile] = await Promise.all([listEvents(), currentProfile()]);
+  const monthStart = new Date(year, month - 1, 25);
+  const monthEnd = new Date(year, month + 1, 10);
+  const [monthEvents, upcoming, profile] = await Promise.all([
+    listEvents(monthStart, monthEnd),
+    listEvents(now, undefined, 10),
+    currentProfile(),
+  ]);
 
   const eventsByDay = new Map<string, EventRow[]>();
-  for (const ev of events) {
+  for (const ev of monthEvents) {
     const key = dayKey(new Date(ev.starts_at));
     eventsByDay.set(key, [...(eventsByDay.get(key) ?? []), ev]);
   }
-
-  const upcoming = events
-    .filter((ev) => new Date(ev.starts_at) >= now)
-    .sort(
-      (a, b) =>
-        new Date(a.starts_at).getTime() - new Date(b.starts_at).getTime(),
-    )
-    .slice(0, 10);
 
   const staff = isStaff(profile?.role ?? null);
 

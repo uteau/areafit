@@ -10,7 +10,7 @@
   --color-lamp-hot: #ff2e37;
   --color-lit: #f5f5f1;
 
-  --font-sans: "DM Sans Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
 }
 
 @layer base {

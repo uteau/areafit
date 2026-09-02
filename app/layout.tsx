@@ -1,6 +1,13 @@
 import type { Metadata, Viewport } from "next";
-import "@fontsource-variable/dm-sans";
+import { DM_Sans } from "next/font/google";
 import "./globals.css";
+
+const dmSans = DM_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-dm-sans",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "AreaFit",
@@ -15,7 +22,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="es" className="h-full antialiased">
+    <html lang="es" className={`${dmSans.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col">
         {/*
         THESIS: cada pantalla es la tablilla electrónica del pabellón: los jugadores la leen sin despegarse del banco. Se niega la caja gris genérica del CRUD; la cabina negra es el fondo y el rojo E31B23 la única lámpara viva.
