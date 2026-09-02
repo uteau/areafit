@@ -12,6 +12,7 @@ import {
   IconLogOut,
   IconMenu,
   IconUsers,
+  IconUsersGroup,
   IconX,
 } from '@/components/icons'
 
@@ -21,6 +22,7 @@ function navItems(role: Role) {
     { href: '/rutinas', label: 'Rutinas', icon: IconDumbbell },
   ]
   if (isStaff(role)) base.push({ href: '/usuarios', label: 'Equipo', icon: IconUsers })
+  if (isStaff(role)) base.push({ href: '/grupos', label: 'Grupos', icon: IconUsersGroup })
   return base
 }
 
