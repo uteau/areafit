@@ -1,13 +1,15 @@
 import { createClient } from '@/lib/supabase/server'
 import type { PlayerGroup, Profile } from '@/lib/types'
 
+type GroupRow = PlayerGroup & { member_count?: { count?: number } | null }
+
 export async function listGroups(): Promise<(PlayerGroup & { member_count: number })[]> {
   const supabase = await createClient()
   const { data } = await supabase
     .from('player_groups')
     .select('*, member_count:player_group_members(count)')
     .order('name', { ascending: true })
-  return ((data as unknown) ?? []).map((g: any) => ({
+  return (((data as unknown) ?? []) as GroupRow[]).map((g) => ({
     ...g,
     member_count: g.member_count?.count ?? 0,
   })) as (PlayerGroup & { member_count: number })[]

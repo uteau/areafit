@@ -1,5 +1,3 @@
-import type { PlayerGroup, Profile } from '@/lib/types'
-
 export function RoutineAssignmentBadge({
   assignedToPlayer,
   assignedToGroup,

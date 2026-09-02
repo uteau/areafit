@@ -1,13 +1,15 @@
 import { createClient } from '@/lib/supabase/server'
 import type { Exercise, Routine } from '@/lib/types'
 
+type RoutineRow = Routine & { exercise_count?: { count?: number } | null }
+
 export async function listRoutines(): Promise<(Routine & { exercise_count: number })[]> {
   const supabase = await createClient()
   const { data } = await supabase
     .from('routines')
     .select('*, exercise_count:routine_exercises(count)')
     .order('created_at', { ascending: false })
-  return ((data as unknown) ?? []).map((r: any) => ({
+  return (((data as unknown) ?? []) as RoutineRow[]).map((r) => ({
     ...r,
     exercise_count: r.exercise_count?.count ?? 0,
   })) as (Routine & { exercise_count: number })[]
@@ -22,7 +24,7 @@ export async function listRoutinesForPlayer(
     .select('*, exercise_count:routine_exercises(count)')
     .or(`assigned_to_player.eq.${playerId},assigned_to_group.in.(select group_id from player_group_members where player_id='${playerId}')`)
     .order('created_at', { ascending: false })
-  return ((data as unknown) ?? []).map((r: any) => ({
+  return (((data as unknown) ?? []) as RoutineRow[]).map((r) => ({
     ...r,
     exercise_count: r.exercise_count?.count ?? 0,
   })) as (Routine & { exercise_count: number })[]
