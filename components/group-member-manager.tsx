@@ -35,7 +35,7 @@ export function GroupMemberManager({
       <h2 className="readout text-xl">Miembros</h2>
 
       {members.length === 0 ? (
-        <p className="text-sm font-medium text-lit/45">No hay miembros en este grupo</p>
+        <p className="text-sm font-medium text-lit/60">No hay miembros en este grupo</p>
       ) : (
         <ul className="space-y-2">
           {members.map((player) => (
@@ -60,13 +60,13 @@ export function GroupMemberManager({
       <h3 className="text-sm font-bold text-lit/80">Agregar miembro</h3>
 
       {available.length === 0 ? (
-        <p className="text-sm font-medium text-lit/45">Todos los deportistas ya están en el grupo</p>
+        <p className="text-sm font-medium text-lit/60">Todos los deportistas ya están en el grupo</p>
       ) : (
         <ul className="space-y-2">
           {available.map((player) => (
             <li
               key={player.id}
-              className="flex items-center justify-between rounded-lg border border-lime/30 bg-cabinet p-3"
+              className="flex items-center justify-between rounded-lg border border-seam bg-cabinet p-3"
             >
               <span className="text-sm font-semibold text-lit">{player.full_name}</span>
               <button

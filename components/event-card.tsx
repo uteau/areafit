@@ -24,11 +24,11 @@ export function EventCard({ event }: { event: EventRow }) {
         </time>
       </div>
       <p className="mt-2 font-bold text-lit group-hover:text-white">{event.title}</p>
-      <p className="mt-0.5 text-xs font-medium text-lit/50">
+      <p className="mt-0.5 text-xs font-medium text-lit/60">
         {formatDayLong(startsAt)}
       </p>
       {event.location ? (
-        <p className="mt-1.5 flex items-center gap-1 text-xs font-medium text-lit/50">
+        <p className="mt-1.5 flex items-center gap-1 text-xs font-medium text-lit/60">
           <IconPin size={13} />
           {event.location}
         </p>

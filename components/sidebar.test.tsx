@@ -48,9 +48,12 @@ describe('MobileHeader', () => {
 })
 
 describe('Sidebar', () => {
-  it('renderiza las secciones de navegación', () => {
+  it('renderiza la navegación con landmarks accesibles', () => {
     render(<Sidebar profile={profile} />)
-    expect(screen.getAllByLabelText('Secciones').length).toBeGreaterThan(0)
+    const navs = screen.getAllByRole('navigation')
+    expect(navs).toHaveLength(2)
+    expect(screen.getByRole('navigation', { name: 'Navegación principal' })).toBeInTheDocument()
+    expect(screen.getByRole('navigation', { name: 'Navegación móvil' })).toBeInTheDocument()
     expect(screen.getAllByText('Calendario').length).toBeGreaterThan(0)
     expect(screen.getAllByText('Rutinas').length).toBeGreaterThan(0)
   })

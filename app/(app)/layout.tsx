@@ -53,7 +53,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         <SidebarSection />
       </Suspense>
       <main className="flex-1 min-w-0 px-5 pt-6 pb-28 lg:px-10 lg:py-10 lg:pb-10">
-        {children}
+        <div className="mx-auto w-full max-w-[1400px]">{children}</div>
       </main>
     </div>
   )

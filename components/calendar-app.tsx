@@ -46,7 +46,7 @@ export function CalendarApp({
       <aside>
         <h3 className="mb-3 eyebrow capitalize">{formatDayLong(selectedDay)}</h3>
         {dayEvents.length === 0 ? (
-          <p className="text-sm font-medium text-lit/45">No hay eventos este día</p>
+          <p className="text-sm font-medium text-lit/60">No hay eventos este día</p>
         ) : (
           <div className="space-y-2">
             {dayEvents.map((ev) => (
@@ -57,7 +57,7 @@ export function CalendarApp({
 
         <h3 className="mt-6 mb-3 eyebrow">Próximos eventos</h3>
         {afterEvents.length === 0 ? (
-          <p className="text-sm font-medium text-lit/45">No hay eventos próximos</p>
+          <p className="text-sm font-medium text-lit/60">No hay eventos próximos</p>
         ) : (
           <div className="space-y-2">
             {afterEvents.map((ev) => (

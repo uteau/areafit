@@ -26,7 +26,7 @@ export default async function RutinasPage() {
       </PageHeader>
 
       {routines.length === 0 ? (
-        <p className="text-sm font-medium text-lit/45">
+        <p className="text-sm font-medium text-lit/60">
           {staff ? 'No hay rutinas todavía' : 'No tienes rutinas asignadas'}
         </p>
       ) : (
@@ -42,7 +42,7 @@ export default async function RutinasPage() {
                 <p className="mt-1 truncate text-sm text-lit/55">{routine.description}</p>
               ) : null}
               <div className="mt-3 flex items-center justify-between">
-                <p className="text-xs font-semibold text-lit/45">
+                <p className="text-xs font-semibold text-lit/60">
                   {routine.exercise_count} {routine.exercise_count === 1 ? 'ejercicio' : 'ejercicios'}
                 </p>
                 {!staff ? (

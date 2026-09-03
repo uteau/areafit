@@ -2,7 +2,7 @@ import type { Exercise } from '@/lib/types'
 
 export function ExerciseList({ exercises }: { exercises: Exercise[] }) {
   if (exercises.length === 0) {
-    return <p className="text-sm font-medium text-lit/45">Esta rutina aún no tiene ejercicios</p>
+    return <p className="text-sm font-medium text-lit/60">Esta rutina aún no tiene ejercicios</p>
   }
 
   return (

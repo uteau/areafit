@@ -21,7 +21,7 @@ export default async function GruposPage() {
       </PageHeader>
 
       {groups.length === 0 ? (
-        <p className="text-sm font-medium text-lit/45">No hay grupos todavía</p>
+        <p className="text-sm font-medium text-lit/60">No hay grupos todavía</p>
       ) : (
         <div className="grid gap-4 md:grid-cols-2">
           {groups.map((group) => (
@@ -34,7 +34,7 @@ export default async function GruposPage() {
               {group.description ? (
                 <p className="mt-1 truncate text-sm text-lit/55">{group.description}</p>
               ) : null}
-              <p className="mt-3 text-xs font-semibold text-lit/45">
+              <p className="mt-3 text-xs font-semibold text-lit/60">
                 {group.member_count} {group.member_count === 1 ? 'miembro' : 'miembros'}
               </p>
             </Link>

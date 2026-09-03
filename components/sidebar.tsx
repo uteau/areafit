@@ -63,7 +63,7 @@ export function MobileHeader({ profile }: { profile: { id: string; full_name: st
           onClick={() => setOpen((v) => !v)}
           aria-label={open ? 'Cerrar menú' : 'Abrir menú'}
           aria-expanded={open}
-          aria-haspopup="menu"
+          aria-controls="mobile-menu"
           className="btn btn-ghost !p-2"
         >
           {open ? <IconX size={18} /> : <IconMenu size={18} />}
@@ -72,7 +72,7 @@ export function MobileHeader({ profile }: { profile: { id: string; full_name: st
 
       {open ? (
         <div
-          role="menu"
+          id="mobile-menu"
           className="absolute inset-x-4 top-[calc(100%+0.5rem)] z-30 rounded-xl border border-seam bg-cabinet p-4 shadow-[0_24px_60px_-20px_rgb(0_0_0/0.6)]"
         >
           <div className="flex items-center justify-between gap-3">
@@ -85,7 +85,7 @@ export function MobileHeader({ profile }: { profile: { id: string; full_name: st
           </div>
           <div className="mt-4 border-t border-seam pt-4">
             <form action="/logout" method="post">
-              <button type="submit" role="menuitem" className="w-full btn btn-ghost">
+              <button type="submit" className="w-full btn btn-ghost">
                 <IconLogOut size={16} />
                 Cerrar sesión
               </button>
@@ -109,7 +109,7 @@ export function Sidebar({ profile }: { profile: { id: string; full_name: string;
           <span className="brand text-lg">AreaFit</span>
           <span className="mt-1 block pl-[22px] text-xs font-medium text-lit/55">Voleibol</span>
         </div>
-        <nav className="flex-1 space-y-1 px-3" aria-label="Secciones">
+        <nav className="flex-1 space-y-1 px-3" aria-label="Navegación principal">
           {items.map((item) => {
             const active = pathname.startsWith(item.href)
             return (
@@ -134,7 +134,7 @@ export function Sidebar({ profile }: { profile: { id: string; full_name: string;
       {/* Mobile bottom console: the scoreboard's console strip */}
       <nav
         className="lg:hidden fixed inset-x-0 bottom-0 z-30 border-t border-seam bg-cabinet px-2 pb-[env(safe-area-inset-bottom)]"
-        aria-label="Secciones"
+        aria-label="Navegación móvil"
       >
         <div className="flex">
           {items.map((item) => {
@@ -145,7 +145,7 @@ export function Sidebar({ profile }: { profile: { id: string; full_name: string;
                 href={item.href}
                 aria-current={active ? 'page' : undefined}
                 className={`relative flex flex-1 flex-col items-center gap-0.5 py-2.5 text-[11px] font-bold tracking-wide uppercase transition-colors ${
-                  active ? 'text-lit' : 'text-lit/50'
+                  active ? 'text-lit' : 'text-lit/60'
                 }`}
               >
                 <item.icon size={20} />

@@ -11,7 +11,7 @@ export function RoutineAssignmentBadge({
 }) {
   if (!assignedToPlayer && !assignedToGroup) {
     return (
-      <span className="inline-flex items-center rounded-full bg-plate px-2.5 py-0.5 text-xs font-semibold text-lit/50">
+      <span className="inline-flex items-center rounded-full bg-plate px-2.5 py-0.5 text-xs font-semibold text-lit/60">
         Sin asignar
       </span>
     )
@@ -29,7 +29,7 @@ export function RoutineAssignmentBadge({
   if (assignedToGroup) {
     const name = groupMap?.get(assignedToGroup) ?? 'Grupo'
     return (
-      <span className="inline-flex items-center rounded-full bg-slate/15 px-2.5 py-0.5 text-xs font-semibold text-lamp">
+      <span className="inline-flex items-center rounded-full bg-plate px-2.5 py-0.5 text-xs font-semibold text-lit">
         Equipo · {name}
       </span>
     )

@@ -53,41 +53,41 @@ export default async function CalendarioPage({
   const nav = (
     <div className="mb-3 flex items-center justify-between border-b border-seam pb-3">
       <div className="flex items-center gap-1">
-        <a
+        <Link
           href={`?mes=${prevYear.month}&anio=${prevYear.year}`}
           className="btn btn-ghost !p-2"
           title="Año anterior"
           aria-label="Año anterior"
         >
           <IconChevrons dir="l" size={16} />
-        </a>
-        <a
+        </Link>
+        <Link
           href={`?mes=${prev.month}&anio=${prev.year}`}
           className="btn btn-ghost !p-2"
           title="Mes anterior"
           aria-label="Mes anterior"
         >
           <IconChevron dir="l" size={16} />
-        </a>
+        </Link>
       </div>
       <h2 className="readout capitalize text-lg sm:text-xl">{monthLabel}</h2>
       <div className="flex items-center gap-1">
-        <a
+        <Link
           href={`?mes=${next.month}&anio=${next.year}`}
           className="btn btn-ghost !p-2"
           title="Mes siguiente"
           aria-label="Mes siguiente"
         >
           <IconChevron dir="r" size={16} />
-        </a>
-        <a
+        </Link>
+        <Link
           href={`?mes=${nextYear.month}&anio=${nextYear.year}`}
           className="btn btn-ghost !p-2"
           title="Año siguiente"
           aria-label="Año siguiente"
         >
           <IconChevrons dir="r" size={16} />
-        </a>
+        </Link>
       </div>
     </div>
   );
